@@ -8,6 +8,8 @@ django = "*"
 "psycopg2-binary" = "*"
 whitenoise = "*"
 django-phonenumbers = "*"
+django-phonenumber-field = "*"
+phonenumbers = "*"
 
 [dev-packages]
 
