@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager
+from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 
 class MyUserManager(BaseUserManager):
@@ -15,6 +16,7 @@ class MyUserManager(BaseUserManager):
             raise ValueError('The Email must be set')
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
+        
         user.set_password(password)
         user.save()
         return user
@@ -38,7 +40,9 @@ from django.utils.translation import ugettext_lazy as _
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True, null=True)
-
+    fullname = models.CharField(max_length = 100)
+    address = models.TextField()
+    username = models.CharField(max_length = 200)
     CATEGORY_CHOICES = (
     	('IN', 'Investor'),
     	('ME', 'Mentor'),
@@ -58,12 +62,19 @@ class User(AbstractBaseUser, PermissionsMixin):
             'Unselect this instead of deleting accounts.'
         ),
     )
-    is_activated = models.BooleanField(
-    	default = False,
+    ACTIVATED_CHOICES = (
+        ('YES', 'Verified'),
+        ('NO', 'Not Verified'),
+        )
+    is_activated = models.CharField(
+        max_length= 3,
+    	default = 'NO',
+        choices= ACTIVATED_CHOICES,
     	help_text = _(
     		'Designates whether this user is verified by ' 
     		'the moderator(admin)')
     	),
+    phoneno = PhoneNumberField(null = True, blank = True)
     USERNAME_FIELD = 'email'
     objects = MyUserManager()
 
