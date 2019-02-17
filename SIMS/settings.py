@@ -25,7 +25,7 @@ SECRET_KEY = 'gg)ztjz_a#(sg87_pb%ps%5w=$@8606s)+2cd%h!6x!-d7+v$5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 import sys 
 sys.path.append(os.path.join(BASE_DIR, 'apps/'))
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'phonenumber_field',
     'CustomUser',
+    'dashboard',
 ]
 
 MIDDLEWARE = [
