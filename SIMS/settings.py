@@ -132,3 +132,5 @@ STATIC_URL = '/static/'
 PHONENUMBER_DB_FORMAT = 'E164'
 
 AUTH_USER_MODEL = 'CustomUser.User'
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
