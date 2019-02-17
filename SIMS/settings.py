@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 import sys 
-sys.path.append(os.path.join(BASE_DIR, 'apps'))
+sys.path.append(os.path.join(BASE_DIR, 'apps/'))
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'phonenumber_field',
+    'CustomUser',
 ]
 
 MIDDLEWARE = [

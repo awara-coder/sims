@@ -38,6 +38,13 @@ from django.utils.translation import ugettext_lazy as _
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True, null=True)
+
+    CATEGORY_CHOICES = (
+    	('IN', 'Investor'),
+    	('ME', 'Mentor'),
+    	('FO', 'Founder'),
+    	)
+    category = models.CharField(max_length = 2, choices = CATEGORY_CHOICES, default = 'IN')
     is_staff = models.BooleanField(
         _('staff status'),
         default=False,
@@ -51,6 +58,12 @@ class User(AbstractBaseUser, PermissionsMixin):
             'Unselect this instead of deleting accounts.'
         ),
     )
+    is_activated = models.BooleanField(
+    	default = False,
+    	help_text = _(
+    		'Designates whether this user is verified by ' 
+    		'the moderator(admin)')
+    	),
     USERNAME_FIELD = 'email'
     objects = MyUserManager()
 
