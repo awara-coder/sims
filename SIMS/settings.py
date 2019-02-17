@@ -59,7 +59,7 @@ ROOT_URLCONF = 'SIMS.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,3 +129,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 PHONENUMBER_DB_FORMAT = 'E164'
+
+AUTH_USER_MODEL = 'CustomUser.User'
